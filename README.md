@@ -104,6 +104,10 @@ Week 14: Design & Implementation Patterns
 
 Follow my #100DaysOfCode journey @ www.linkedin.com/in/jamilagibson
 
+### Helpful Resources
+
+Markdown Formatting and Syntax: https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+
 ### MIT License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
