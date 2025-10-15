@@ -30,6 +30,9 @@ edge cases: 1) needle longer than haystack, 3) needle = haystack
 --------------------------------Findings--------------------------------
 Time Complexity:  O(n*m) where n = length of haystack and m = length of needle
 Space Complexity: O(m) where m = length of needle
+Optimization options: 
+Rabin-Karp https://www.geeksforgeeks.org/dsa/rabin-karp-algorithm-for-pattern-searching/
+KMP: https://www.geeksforgeeks.org/dsa/kmp-algorithm-for-pattern-searching/
  */
 
 //func w/ 2 params that returns first occurence of needle in haystack or -1
