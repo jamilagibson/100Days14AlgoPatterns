@@ -27,6 +27,12 @@ output: num (index of 1st needle or -1)
 
 edge cases: 1) needle longer than haystack, 3) needle = haystack
 
+Pseudocode:
+1) handle edge cases with conditional statements 
+2) iterate through haystack with for loop
+3) slice haystack from curr index to curr index + needle length
+4) if sliced str === needle, return curr index
+5) if loop ends, return -1
 --------------------------------Findings--------------------------------
 Time Complexity:  O(n*m) where n = length of haystack and m = length of needle
 Space Complexity: O(m) where m = length of needle
