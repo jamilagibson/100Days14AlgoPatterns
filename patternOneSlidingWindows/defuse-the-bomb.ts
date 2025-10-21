@@ -46,7 +46,7 @@ edge case(s):  coudln't think of any that aren't already handled in the constrai
 control case(s): 1) uniform arr to verify arithmetic consistency --> won't bother with this
 
 pseudocode:
-1. handle control case(s) and k= 0 with conditional statements
+1. handle k= 0 with conditional statement
 2. declare var initialized to arr of length 
 3. iterate through input arr with for loop
 4. declare var to hold sum for curr index
@@ -57,11 +57,13 @@ pseudocode:
 
 
 --------------------------------Findings--------------------------------
-Time Complexity:  
-Space Complexity: 
-Optimization options: 
-considered doubling the array but that would increase space complexity unnecessarily
-decided between .map and for loop - went with for loop for clarity and consistency with sliding window pattern
+Time Complexity: O(n*|k|) where n = length of code arr and k = integer input 
+Space Complexity: O(1) ignoring output arr or O(n) including output arr
+Optimization options: Use two pointers to actually implement the sliding window pattern more directly
+
+Initially:
+-considered doubling the array but that would increase space complexity unnecessarily
+-decided between .map and for loop - went with for loop for clarity and consistency with sliding window pattern
  */
 
 function decryptTheCode(codeArray: number[], k: number): number[] {
