@@ -37,7 +37,7 @@ n == code.length
 1 <= code[i] <= 100
 -(n - 1) <= k <= n - 1
 
---------------------------------Approach (??)--------------------------------
+--------------------------------Approach (Brute Force)--------------------------------
 pattern: Sliding Window
 input: arr of nums (code), num (integer to determine sum direction and number of elements to sum) 
 output: decrypted arr of nums
