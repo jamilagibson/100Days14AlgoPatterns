@@ -18,7 +18,7 @@ Week 1: Sliding Window
 
  - [ ] substring-nonrepeating.ts - Longest Substring Without Repeating Characters - Medium
  - [ ] longest-common-prefix.ts - Longest Common Prefix - Easy
- - [ ] needle-haystack.ts - Find Needle in Haystack (String Matching) - Easy
+ - [X] needle-haystack.ts - Find Needle in Haystack (String Matching) - Easy
 
 Week 2: Two Pointers
 
