@@ -42,53 +42,67 @@ pattern: Sliding Window
 input: arr of nums (code), num (integer to determine sum direction and number of elements to sum) 
 output: decrypted arr of nums
 
-edge case(s):  coudln't think of any that aren't already handled in the constraints
-control case(s): 1) uniform arr to verify arithmetic consistency --> won't bother with this
+edge case(s):  k = 0 returns arr of 0s
+control case(s): uniform arr to verify arithmetic consistency --> won't bother with this b/c handled w/ constraints
 
 pseudocode:
 1. handle k= 0 with conditional statement
 2. declare var initialized to arr of length 
-3. iterate through input arr with for loop
-4. declare var to hold sum for curr index
-5. if k > 0, sum the next k elements wrapping circularly as needed
-6. if k < 0, sum the previous k elements wrapping circularly as needed
-7. store sum at ith index of decrypted arr
-8. return decrypted arr
+3. determine window start position based on sign of k
+4. calculate initial window sum for position 0
+5. store initial sum in result[0]
+6. slide window through remaining positions (1 to n-1):
+   a. remove element leaving the window
+   b. add element entering the window
+   c. store updated sum in result[i]
+7. return result array
+
+Window positioning:
+- if k > 0: window starts at index 1 (next k elements)
+- if k < 0: window starts at index n+k (previous |k| elements, wrapping around)
 
 
 --------------------------------Findings--------------------------------
-Time Complexity: O(n*|k|) where n = length of code arr and k = integer input 
+Time Complexity: O(n) single pass through code array
 Space Complexity: O(1) ignoring output arr or O(n) including output arr
-Optimization options: Use two pointers to actually implement the sliding window pattern more directly
+Optimization: none identified
 
-Initially:
--considered doubling the array but that would increase space complexity unnecessarily
--decided between .map and for loop - went with for loop for clarity and consistency with sliding window pattern
+Previous approach used nested loops (O(n*k))
+New approach reuses calculations by maintaining running sum
+For n=100, k=50: reduces from ~5000 operations to ~150 operations
  */
 
 function decryptTheCode(codeArray: number[], k: number): number[] {
-
-    //handle k = 0 condition
-    if ( k === 0) return new Array(codeArray.length).fill(0);
-
-    let decryptedCodeArray: number[] = new Array(codeArray.length);
-
-    for (let i = 0; i < codeArray.length; i++) {
-        let sum: number = 0;
-
-        if (k > 0) {
-            for (let j = 1; j <= k; j++) {
-                sum += codeArray[(i + j) % codeArray.length];
-            }
-            decryptedCodeArray[i] = sum;
-        }
-        else {
-            for (let j = 1; j <= Math.abs(k); j++) {
-                sum += codeArray[(i - j + codeArray.length) % codeArray.length];
-            }
-            decryptedCodeArray[i] = sum;
-        }
+    const arrayLength = codeArray.length;
+    
+    // Handle k = 0 case
+    if (k === 0) return new Array(arrayLength).fill(0);
+    
+    const decryptedCodeArray: number[] = new Array(arrayLength);
+    let windowSum = 0;
+    
+    // Determine window start and direction based on k
+    const windowStartIndex = k > 0 ? 1 : arrayLength + k;
+    const windowEndIndex = k > 0 ? k : arrayLength - 1;
+    
+    // Calculate initial window sum for position 0
+    for (let i = windowStartIndex; i <= windowEndIndex; i++) {
+        windowSum += codeArray[i % arrayLength];
     }
+    decryptedCodeArray[0] = windowSum;
+    
+    // Slide window through remaining positions
+    for (let i = 1; i < arrayLength; i++) {
+        // Remove element leaving the window
+        windowSum -= codeArray[(windowStartIndex + i - 1) % arrayLength];
+        
+        // Add element entering window
+        windowSum += codeArray[(windowEndIndex + i) % arrayLength];
+        
+        // Store sum for current position
+        decryptedCodeArray[i] = windowSum;
+    }
+    
     return decryptedCodeArray;
 }
 
